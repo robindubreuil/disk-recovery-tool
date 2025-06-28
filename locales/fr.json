@@ -1,10 +1,10 @@
 {
-  "title": "Disk Recovery Tool",
-  "version": "Version 2.1.0 - Dump & Restore avec authentification et i18n",
+  "title": "DiskOver",
+  "version": "Sauvegarde et restauration de disques",
   "logout": "Déconnexion",
   
-  "tab_dump": "Dump Disque",
-  "tab_restore": "Restaurer Image",
+  "tab_dump": "Sauvegarde disque",
+  "tab_restore": "Restaurer image",
   
   "select_disk": "Sélectionner le disque à dumper",
   "choose_disk": "Choisir un disque",
@@ -15,10 +15,6 @@
   "better_ratio": "Meilleur ratio",
   "faster": "Plus rapide",
   "no_compression": "Aucune compression disponible",
-  
-  "encrypt_image": "Chiffrer l'image",
-  "encryption_password": "Mot de passe de chiffrement",
-  "encryption_unavailable": "Chiffrement non disponible (OpenSSL requis)",
   
   "warning_title": "ATTENTION",
   "dump_warning": "Cette opération va créer une copie complète du disque sélectionné. Le processus peut prendre plusieurs heures selon la taille du disque.",
@@ -36,8 +32,6 @@
   "select_image": "Sélectionner l'image à restaurer",
   "destination_disk": "Disque de destination",
   "choose_destination": "Choisir le disque de destination",
-  "decryption_password": "Mot de passe de déchiffrement",
-  "required_if_encrypted": "Requis si l'image est chiffrée",
   
   "danger": "DANGER",
   "restore_warning": "Cette opération va EFFACER COMPLÈTEMENT le disque de destination. Toutes les données existantes seront perdues de manière irréversible !",
@@ -49,19 +43,15 @@
   "better_compression_ratio": "Meilleur ratio de compression",
   "compression_zstd": "Compression ZSTD",
   "faster_compression": "Compression plus rapide",
-  "encryption_aes": "Chiffrement AES-256",
-  "password_protection": "Protection par mot de passe",
   "checksum_sha256": "Checksum SHA256",
   "integrity_verification": "Vérification d'intégrité",
   
   "size": "Taille",
   "compression": "Compression",
-  "encryption": "Chiffrement",
   "yes": "Oui",
   "no": "Non",
   
   "select_disk_compression": "Veuillez sélectionner un disque et un type de compression",
-  "password_required_encryption": "Mot de passe requis pour le chiffrement",
   "confirm_dump": "Êtes-vous sûr de vouloir dumper le disque",
   "configuration": "Configuration",
   "operation_long": "Cette opération peut prendre plusieurs heures. Continuer ?",
@@ -87,6 +77,18 @@
   "feature_dump": "Dump complet de disques avec streaming",
   "feature_restore": "Restauration d'images via interface web",
   "feature_compression": "Compression XZ et ZSTD",
-  "feature_encryption": "Chiffrement AES-256 avec mot de passe",
-  "feature_checksum": "Vérification d'intégrité SHA256"
+  "feature_checksum": "Vérification d'intégrité SHA256",
+  
+  "checksums_title": "Checksums des Dumps Disque",
+  "back_home": "Retour à l'accueil",
+  "checksums_info": "Voici les checksums SHA256 de tous les dumps disque effectués pendant cette session. Utilisez-les pour vérifier l'intégrité de vos images téléchargées.",
+  "duration": "Durée",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "no_checksums": "Aucun checksum disponible",
+  "no_checksums_info": "Les checksums apparaîtront ici après avoir effectué des dumps de disque.",
+  
+  "view_checksums": "Voir les Checksums",
+  "https_enabled": "HTTPS Activé",
+  "https_info": "Votre connexion est chiffrée avec TLS"
 }

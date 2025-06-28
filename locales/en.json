@@ -1,6 +1,6 @@
 {
-  "title": "Disk Recovery Tool",
-  "version": "Version 2.1.0 - Advanced Dump & Restore with authentication and i18n",
+  "title": "DiskOver",
+  "version": "Advanced disk dump & restore ",
   "logout": "Logout",
   
   "tab_dump": "Disk Dump",
@@ -15,10 +15,6 @@
   "better_ratio": "Better ratio",
   "faster": "Faster",
   "no_compression": "No compression available",
-  
-  "encrypt_image": "Encrypt image",
-  "encryption_password": "Encryption password",
-  "encryption_unavailable": "Encryption unavailable (OpenSSL required)",
   
   "warning_title": "WARNING",
   "dump_warning": "This operation will create a complete copy of the selected disk. The process may take several hours depending on disk size.",
@@ -36,8 +32,6 @@
   "select_image": "Select image to restore",
   "destination_disk": "Destination disk",
   "choose_destination": "Choose destination disk",
-  "decryption_password": "Decryption password",
-  "required_if_encrypted": "Required if image is encrypted",
   
   "danger": "DANGER",
   "restore_warning": "This operation will COMPLETELY ERASE the destination disk. All existing data will be irreversibly lost!",
@@ -49,19 +43,15 @@
   "better_compression_ratio": "Better compression ratio",
   "compression_zstd": "ZSTD Compression",
   "faster_compression": "Faster compression",
-  "encryption_aes": "AES-256 Encryption",
-  "password_protection": "Password protection",
   "checksum_sha256": "SHA256 Checksum",
   "integrity_verification": "Integrity verification",
   
   "size": "Size",
   "compression": "Compression",
-  "encryption": "Encryption",
   "yes": "Yes",
   "no": "No",
   
   "select_disk_compression": "Please select a disk and compression type",
-  "password_required_encryption": "Password required for encryption",
   "confirm_dump": "Are you sure you want to dump disk",
   "configuration": "Configuration",
   "operation_long": "This operation may take several hours. Continue?",
@@ -87,6 +77,18 @@
   "feature_dump": "Complete disk dump with streaming",
   "feature_restore": "Image restoration via web interface",
   "feature_compression": "XZ and ZSTD compression",
-  "feature_encryption": "AES-256 encryption with password",
-  "feature_checksum": "SHA256 integrity verification"
+  "feature_checksum": "SHA256 integrity verification",
+  
+  "checksums_title": "Disk Dump Checksums",
+  "back_home": "Back to Home",
+  "checksums_info": "Below are the SHA256 checksums for all disk dumps performed during this session. Use these to verify the integrity of your downloaded images.",
+  "duration": "Duration",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "no_checksums": "No checksums available",
+  "no_checksums_info": "Checksums will appear here after completing disk dumps.",
+  
+  "view_checksums": "View Checksums",
+  "https_enabled": "HTTPS Enabled",
+  "https_info": "Your connection is encrypted using TLS"
 }
