@@ -1,0 +1,27 @@
+[Unit]
+Description=Disk Recovery Tool v2.1.0
+Documentation=file:///opt/disk-recovery/README.txt
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/disk-recovery
+ExecStart=/opt/disk-recovery/disk-recovery-tool -port 8443 -password-hash '$HASH_HERE$'
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=disk-recovery
+
+# Sécurité
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/disk-recovery
+
+[Install]
+WantedBy=multi-user.target

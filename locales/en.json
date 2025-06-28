@@ -1,0 +1,92 @@
+{
+  "title": "Disk Recovery Tool",
+  "version": "Version 2.1.0 - Advanced Dump & Restore with authentication and i18n",
+  "logout": "Logout",
+  
+  "tab_dump": "Disk Dump",
+  "tab_restore": "Restore Image",
+  
+  "select_disk": "Select disk to dump",
+  "choose_disk": "Choose a disk",
+  "mount_on": "mounted on",
+  
+  "compression_type": "Compression type",
+  "level": "level",
+  "better_ratio": "Better ratio",
+  "faster": "Faster",
+  "no_compression": "No compression available",
+  
+  "encrypt_image": "Encrypt image",
+  "encryption_password": "Encryption password",
+  "encryption_unavailable": "Encryption unavailable (OpenSSL required)",
+  
+  "warning_title": "WARNING",
+  "dump_warning": "This operation will create a complete copy of the selected disk. The process may take several hours depending on disk size.",
+  
+  "start_dump": "Start dump",
+  "dump_progress": "Dump in progress... Do not close this page.",
+  "download_starting": "Download will start automatically...",
+  
+  "dump_success": "Dump completed successfully!",
+  "file": "File",
+  "checksum": "Checksum",
+  "checksum_info": "Keep this checksum to verify the integrity of your image after download.",
+  "verify_command": "Verification command",
+  
+  "select_image": "Select image to restore",
+  "destination_disk": "Destination disk",
+  "choose_destination": "Choose destination disk",
+  "decryption_password": "Decryption password",
+  "required_if_encrypted": "Required if image is encrypted",
+  
+  "danger": "DANGER",
+  "restore_warning": "This operation will COMPLETELY ERASE the destination disk. All existing data will be irreversibly lost!",
+  
+  "restore_image": "Restore image",
+  "restore_progress": "Restoration in progress... Please wait.",
+  
+  "compression_xz": "XZ Compression",
+  "better_compression_ratio": "Better compression ratio",
+  "compression_zstd": "ZSTD Compression",
+  "faster_compression": "Faster compression",
+  "encryption_aes": "AES-256 Encryption",
+  "password_protection": "Password protection",
+  "checksum_sha256": "SHA256 Checksum",
+  "integrity_verification": "Integrity verification",
+  
+  "size": "Size",
+  "compression": "Compression",
+  "encryption": "Encryption",
+  "yes": "Yes",
+  "no": "No",
+  
+  "select_disk_compression": "Please select a disk and compression type",
+  "password_required_encryption": "Password required for encryption",
+  "confirm_dump": "Are you sure you want to dump disk",
+  "configuration": "Configuration",
+  "operation_long": "This operation may take several hours. Continue?",
+  "dumping": "Dumping...",
+  
+  "select_file_device": "Please select a file and destination disk",
+  "confirm_restore": "WARNING: Do you really want to restore the image to",
+  "all_data_lost": "ALL DATA ON THE DISK WILL BE ERASED!",
+  "action_irreversible": "This action is IRREVERSIBLE. Type \"CONFIRM\" to continue:",
+  "restoring": "Restoring...",
+  
+  "login_title": "Authentication Required",
+  "login_subtitle": "Secure access to recovery system",
+  "password": "Password",
+  "enter_password": "Enter your password",
+  "login": "Login",
+  "authenticating": "Authenticating",
+  "invalid_password": "Invalid password. Please try again.",
+  
+  "security_info": "Security Information",
+  "security_description": "This tool allows complete disk backup and restoration with the following features:",
+  
+  "feature_dump": "Complete disk dump with streaming",
+  "feature_restore": "Image restoration via web interface",
+  "feature_compression": "XZ and ZSTD compression",
+  "feature_encryption": "AES-256 encryption with password",
+  "feature_checksum": "SHA256 integrity verification"
+}

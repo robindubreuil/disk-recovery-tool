@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="{{.Lang}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{t "title" .Lang}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .header-left h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .version {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .lang-selector select {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        
+        .lang-selector select option {
+            background: #2a5298;
+            color: white;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        select, input[type="text"], input[type="password"], input[type="file"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+        }
+        
+        .password-field {
+            display: none;
+            margin-top: 15px;
+        }
+        
+        .password-field.show {
+            display: block;
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .warning-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .info-box {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+        }
+        
+        .btn-dump {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
+        }
+        
+        .btn-restore {
+            background: linear-gradient(135deg, #4ecdc4, #26c6da);
+            color: white;
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .progress-text {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result-container {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 12px;
+        }
+        
+        .checksum {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        
+        .status-ok { background: #00ff00; }
+        .status-missing { background: #ff4444; }
+        
+        .file-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .header-left h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>🔧 {{t "title" .Lang}}</h1>
+                <div class="version">{{t "version" .Lang}}</div>
+            </div>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <select onchange="changeLanguage(this.value)">
+                        {{range $code, $name := .Languages}}
+                        <option value="{{$code}}" {{if eq $code $.Lang}}selected{{end}}>{{$name}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                <a href="/logout" class="logout-btn">{{t "logout" .Lang}}</a>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('dump')">📤 {{t "tab_dump" .Lang}}</div>
+            <div class="tab" onclick="switchTab('restore')">📥 {{t "tab_restore" .Lang}}</div>
+        </div>
+        
+        <!-- TAB DUMP -->
+        <div id="dump-tab" class="tab-content active">
+            <form id="dumpForm" action="/dump" method="post">
+                <div class="form-group">
+                    <label for="device">{{t "select_disk" .Lang}} :</label>
+                    <select id="device" name="device" required>
+                        <option value="">-- {{t "choose_disk" .Lang}} --</option>
+                        {{range .Devices}}
+                        <option value="{{.Name}}">
+                            /dev/{{.Name}} - {{.Size}} {{if .Mountpoint}}({{$.Languages.mount_on}} {{.Mountpoint}}){{end}}
+                        </option>
+                        {{end}}
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="compression">{{t "compression_type" .Lang}} :</label>
+                        <select id="compression" name="compression" required>
+                            {{if .HasXz}}<option value="xz">XZ ({{t "level" .Lang}} 3) - {{t "better_ratio" .Lang}}</option>{{end}}
+                            {{if .HasZstd}}<option value="zstd">ZSTD ({{t "level" .Lang}} 3) - {{t "faster" .Lang}}</option>{{end}}
+                            {{if not .HasXz}}{{if not .HasZstd}}<option value="">{{t "no_compression" .Lang}}</option>{{end}}{{end}}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        {{if .HasOpenssl}}
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="encrypt" name="encrypt" onchange="togglePassword()">
+                            <label for="encrypt">{{t "encrypt_image" .Lang}} (AES-256)</label>
+                        </div>
+                        <div class="password-field" id="passwordField">
+                            <input type="password" id="password" name="password" placeholder="{{t "encryption_password" .Lang}}" minlength="8">
+                        </div>
+                        {{else}}
+                        <div style="opacity: 0.6;">
+                            🔒 {{t "encryption_unavailable" .Lang}}
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                
+                <div class="warning">
+                    <span class="warning-icon">⚠️</span>
+                    <strong>{{t "warning_title" .Lang}} :</strong> {{t "dump_warning" .Lang}}
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-dump" id="dumpBtn">
+                        {{t "start_dump" .Lang}}
+                    </button>
+                </div>
+            </form>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-text">{{t "dump_progress" .Lang}}</div>
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; opacity: 0.8;">
+                    {{t "download_starting" .Lang}}
+                </p>
+            </div>
+            
+            <div class="result-container" id="resultContainer">
+                <h3>✅ {{t "dump_success" .Lang}}</h3>
+                <p><strong>{{t "file" .Lang}} :</strong> <span id="resultFilename"></span></p>
+                <p><strong>{{t "checksum" .Lang}} SHA256 :</strong></p>
+                <div class="checksum" id="resultChecksum"></div>
+                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
+                    💡 {{t "checksum_info" .Lang}}
+                    <br>{{t "verify_command" .Lang}} : <code>sha256sum fichier.img.xz</code>
+                </p>
+            </div>
+        </div>
+        
+        <!-- TAB RESTORE -->
+        <div id="restore-tab" class="tab-content">
+            <form id="restoreForm" action="/restore" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="image_file">{{t "select_image" .Lang}} :</label>
+                    <input type="file" id="image_file" name="image_file" accept=".img,.xz,.zst,.enc" required onchange="analyzeFile()">
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <div id="fileDetails"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="restore_device">{{t "destination_disk" .Lang}} :</label>
+                        <select id="restore_device" name="restore_device" required>
+                            <option value="">-- {{t "choose_destination" .Lang}} --</option>
+                            {{range .Devices}}
+                            <option value="{{.Name}}">
+                                /dev/{{.Name}} - {{.Size}}
+                            </option>
+                            {{end}}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="password-field" id="restorePasswordField">
+                            <label for="restore_password">{{t "decryption_password" .Lang}} :</label>
+                            <input type="password" id="restore_password" name="restore_password" placeholder="{{t "required_if_encrypted" .Lang}}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning">
+                    <span class="warning-icon">⚠️</span>
+                    <strong>{{t "danger" .Lang}} :</strong> {{t "restore_warning" .Lang}}
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-restore" id="restoreBtn">
+                        {{t "restore_image" .Lang}}
+                    </button>
+                </div>
+            </form>
+            
+            <div class="progress-container" id="restoreProgressContainer">
+                <div class="progress-text">{{t "restore_progress" .Lang}}</div>
+                <div class="spinner"></div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>{{t "compression_xz" .Lang}}</h3>
+                <p>{{t "better_compression_ratio" .Lang}}
+                <span class="status-indicator {{if .HasXz}}status-ok{{else}}status-missing{{end}}"></span></p>
+            </div>
+            <div class="feature-card">
+                <h3>{{t "compression_zstd" .Lang}}</h3>
+                <p>{{t "faster_compression" .Lang}}
+                <span class="status-indicator {{if .HasZstd}}status-ok{{else}}status-missing{{end}}"></span></p>
+            </div>
+            <div class="feature-card">
+                <h3>{{t "encryption_aes" .Lang}}</h3>
+                <p>{{t "password_protection" .Lang}}
+                <span class="status-indicator {{if .HasOpenssl}}status-ok{{else}}status-missing{{end}}"></span></p>
+            </div>
+            <div class="feature-card">
+                <h3>{{t "checksum_sha256" .Lang}}</h3>
+                <p>{{t "integrity_verification" .Lang}}
+                <span class="status-indicator status-ok"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function changeLanguage(lang) {
+            window.location.href = '/set-lang?lang=' + lang;
+        }
+        
+        function togglePassword() {
+            const checkbox = document.getElementById('encrypt');
+            const passwordField = document.getElementById('passwordField');
+            
+            if (checkbox.checked) {
+                passwordField.classList.add('show');
+                document.getElementById('password').required = true;
+            } else {
+                passwordField.classList.remove('show');
+                document.getElementById('password').required = false;
+            }
+        }
+        
+        function analyzeFile() {
+            const fileInput = document.getElementById('image_file');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileDetails = document.getElementById('fileDetails');
+            const passwordField = document.getElementById('restorePasswordField');
+            
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const filename = file.name;
+                const size = (file.size / (1024 * 1024 * 1024)).toFixed(2);
+                
+                const isEncrypted = filename.includes('.enc');
+                const isXz = filename.includes('.xz');
+                const isZstd = filename.includes('.zst');
+                
+                let compressionType = '{{t "no_compression" .Lang}}';
+                if (isXz) compressionType = 'XZ';
+                if (isZstd) compressionType = 'ZSTD';
+                
+                fileDetails.innerHTML = `
+                    <strong>{{t "file" .Lang}} :</strong> ${filename}<br>
+                    <strong>{{t "size" .Lang}} :</strong> ${size} GB<br>
+                    <strong>{{t "compression" .Lang}} :</strong> ${compressionType}<br>
+                    <strong>{{t "encryption" .Lang}} :</strong> ${isEncrypted ? '{{t "yes" .Lang}} (AES-256)' : '{{t "no" .Lang}}'}
+                `;
+                
+                fileInfo.style.display = 'block';
+                
+                if (isEncrypted) {
+                    passwordField.style.display = 'block';
+                    document.getElementById('restore_password').required = true;
+                } else {
+                    passwordField.style.display = 'none';
+                    document.getElementById('restore_password').required = false;
+                }
+            }
+        }
+        
+        // Form submissions with i18n
+        document.getElementById('dumpForm').addEventListener('submit', function(e) {
+            const device = document.getElementById('device').value;
+            const compression = document.getElementById('compression').value;
+            const encrypt = document.getElementById('encrypt').checked;
+            const password = document.getElementById('password').value;
+            
+            if (!device || !compression) {
+                alert('{{t "select_disk_compression" .Lang}}');
+                e.preventDefault();
+                return;
+            }
+            
+            if (encrypt && !password) {
+                alert('{{t "password_required_encryption" .Lang}}');
+                e.preventDefault();
+                return;
+            }
+            
+            const confirmMsg = `{{t "confirm_dump" .Lang}} /dev/${device} ?\n\n` +
+                              `{{t "configuration" .Lang}} :\n` +
+                              `- {{t "compression" .Lang}} : ${compression.toUpperCase()}\n` +
+                              `- {{t "encryption" .Lang}} : ${encrypt ? '{{t "yes" .Lang}} (AES-256)' : '{{t "no" .Lang}}'}\n\n` +
+                              `{{t "operation_long" .Lang}}`;
+            
+            if (!confirm(confirmMsg)) {
+                e.preventDefault();
+                return;
+            }
+            
+            document.getElementById('dumpBtn').disabled = true;
+            document.getElementById('dumpBtn').textContent = '{{t "dumping" .Lang}}';
+            document.getElementById('progressContainer').style.display = 'block';
+        });
+        
+        document.getElementById('restoreForm').addEventListener('submit', function(e) {
+            const device = document.getElementById('restore_device').value;
+            const file = document.getElementById('image_file').files[0];
+            
+            if (!device || !file) {
+                alert('{{t "select_file_device" .Lang}}');
+                e.preventDefault();
+                return;
+            }
+            
+            const confirmMsg = `{{t "confirm_restore" .Lang}} /dev/${device} ?\n\n` +
+                              `⚠️  {{t "all_data_lost" .Lang}}\n\n` +
+                              `{{t "action_irreversible" .Lang}}`;
+            
+            const confirmation = prompt(confirmMsg);
+            if (confirmation !== 'CONFIRMER') {
+                e.preventDefault();
+                return;
+            }
+            
+            document.getElementById('restoreBtn').disabled = true;
+            document.getElementById('restoreBtn').textContent = '{{t "restoring" .Lang}}';
+            document.getElementById('restoreProgressContainer').style.display = 'block';
+        });
+        
+        fetch('/status')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server status:', data);
+            })
+            .catch(err => {
+                console.error('Connection error:', err);
+            });
+    </script>
+</body>
+</html>

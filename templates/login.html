@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="{{.Lang}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{t "login_title" .Lang}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .login-header {
+            margin-bottom: 40px;
+        }
+        
+        .login-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+        
+        .login-header .subtitle {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        .lang-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .lang-selector select {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        
+        .lang-selector select option {
+            background: #2a5298;
+            color: white;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="password"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .security-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .security-info h3 {
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .error-message {
+            display: none;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            color: #ffcccc;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin-top: 15px;
+        }
+        
+        .features-list li {
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .features-list li:before {
+            content: "🔧";
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 2rem;
+            }
+            
+            .lang-selector {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-selector">
+        <select onchange="changeLanguage(this.value)">
+            {{range $code, $name := .Languages}}
+            <option value="{{$code}}" {{if eq $code $.Lang}}selected{{end}}>{{$name}}</option>
+            {{end}}
+        </select>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <h1>🔧 {{t "login_title" .Lang}}</h1>
+            <div class="subtitle">{{t "login_subtitle" .Lang}}</div>
+        </div>
+        
+        <form class="login-form" action="/auth" method="post" id="loginForm">
+            <div class="form-group">
+                <label for="password">{{t "password" .Lang}} :</label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="{{t "enter_password" .Lang}}" 
+                       autocomplete="current-password">
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                {{t "login" .Lang}}
+            </button>
+        </form>
+        
+        <div class="error-message" id="errorMessage">
+            {{t "invalid_password" .Lang}}
+        </div>
+        
+        <div class="security-info">
+            <h3>{{t "security_info" .Lang}}</h3>
+            <p>{{t "security_description" .Lang}}</p>
+            
+            <ul class="features-list">
+                <li>{{t "feature_dump" .Lang}}</li>
+                <li>{{t "feature_restore" .Lang}}</li>
+                <li>{{t "feature_compression" .Lang}}</li>
+                <li>{{t "feature_encryption" .Lang}}</li>
+                <li>{{t "feature_checksum" .Lang}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            window.location.href = '/set-lang?lang=' + lang;
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            if (!password) {
+                e.preventDefault();
+                return;
+            }
+            
+            // Disable button during submission
+            const btn = document.getElementById('loginBtn');
+            btn.disabled = true;
+            btn.textContent = '{{t "authenticating" .Lang}}...';
+        });
+        
+        // Show error message if redirected with error
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('error') === 'auth') {
+            document.getElementById('errorMessage').classList.add('show');
+        }
+        
+        // Focus password field
+        document.getElementById('password').focus();
+        
+        // Auto-clear error message when typing
+        document.getElementById('password').addEventListener('input', function() {
+            document.getElementById('errorMessage').classList.remove('show');
+        });
+    </script>
+</body>
+</html>
