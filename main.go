@@ -622,9 +622,9 @@ func (s *DiskRecoveryServer) streamDiskDump(w http.ResponseWriter, devicePath st
 	var compCmd *exec.Cmd
 	switch options.Compression {
 	case "xz":
-		compCmd = exec.Command("xz", "-c", "-3")
+		compCmd = exec.Command("xz")
 	case "zstd":
-		compCmd = exec.Command("zstd", "-3", "-c")
+		compCmd = exec.Command("zstd")
 	default:
 		return nil, fmt.Errorf("compression non supportée: %s", options.Compression)
 	}

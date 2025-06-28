@@ -400,8 +400,8 @@
                     <div class="form-group">
                         <label for="compression">{{t "compression_type" .Lang}} :</label>
                         <select id="compression" name="compression" required>
-                            {{if .HasXz}}<option value="xz">XZ ({{t "level" .Lang}} 3) - {{t "better_ratio" .Lang}}</option>{{end}}
-                            {{if .HasZstd}}<option value="zstd">ZSTD ({{t "level" .Lang}} 3) - {{t "faster" .Lang}}</option>{{end}}
+                            {{if .HasXz}}<option value="xz">XZ - {{t "better_ratio" .Lang}}</option>{{end}}
+                            {{if .HasZstd}}<option value="zstd">ZSTD - {{t "faster" .Lang}}</option>{{end}}
                             {{if not .HasXz}}{{if not .HasZstd}}<option value="">{{t "no_compression" .Lang}}</option>{{end}}{{end}}
                         </select>
                     </div>
