@@ -1,13 +1,13 @@
 {
-  "title": "DiskOver",
-  "version": "Sauvegarde et restauration de disques",
+  "title": "DriveStreamer",
+  "version": "Sauvegarde et restauration version",
   "logout": "Déconnexion",
   
-  "tab_dump": "Sauvegarde disque",
-  "tab_restore": "Restaurer image",
+  "tab_dump": "Sauvegarde",
+  "tab_restore": "Restauration",
   
-  "select_disk": "Sélectionner le disque à dumper",
-  "choose_disk": "Choisir un disque",
+  "select_disk": "Sélectionner le disque à sauvegarder",
+  "choose_disk": "Choisissez un disque",
   "mount_on": "monté sur",
   
   "compression_type": "Type de compression",
@@ -17,13 +17,13 @@
   "no_compression": "Aucune compression disponible",
   
   "warning_title": "ATTENTION",
-  "dump_warning": "Cette opération va créer une copie complète du disque sélectionné. Le processus peut prendre plusieurs heures selon la taille du disque.",
+  "dump_warning": "Cette opération va créer une image complète du disque sélectionné, y compris de l'espace vide. Le processus peut prendre plusieurs heures selon la taille du disque.",
   
-  "start_dump": "Démarrer le dump",
-  "dump_progress": "Dump en cours... Ne fermez pas cette page.",
-  "download_starting": "Le téléchargement va commencer automatiquement...",
+  "start_dump": "Sauvegarder",
+  "dump_progress": "Création de l'image disque...",
+  "download_starting": "Le téléchargement va commencer automatiquement.",
   
-  "dump_success": "Dump terminé avec succès !",
+  "dump_success": "Sauvegarde terminée!",
   "file": "Fichier",
   "checksum": "Checksum",
   "checksum_info": "Conservez ce checksum pour vérifier l'intégrité de votre image après téléchargement.",
@@ -36,11 +36,11 @@
   "danger": "DANGER",
   "restore_warning": "Cette opération va EFFACER COMPLÈTEMENT le disque de destination. Toutes les données existantes seront perdues de manière irréversible !",
   
-  "restore_image": "Restaurer l'image",
+  "restore_image": "Restaurer",
   "restore_progress": "Restauration en cours... Veuillez patienter.",
   
   "compression_xz": "Compression XZ",
-  "better_compression_ratio": "Meilleur ratio de compression",
+  "better_compression_ratio": "Meilleur taux de compression",
   "compression_zstd": "Compression ZSTD",
   "faster_compression": "Compression plus rapide",
   "checksum_sha256": "Checksum SHA256",
@@ -52,10 +52,10 @@
   "no": "Non",
   
   "select_disk_compression": "Veuillez sélectionner un disque et un type de compression",
-  "confirm_dump": "Êtes-vous sûr de vouloir dumper le disque",
+  "confirm_dump": "Êtes-vous sûr de vouloir sauvegarder le disque",
   "configuration": "Configuration",
   "operation_long": "Cette opération peut prendre plusieurs heures. Continuer ?",
-  "dumping": "Dump en cours...",
+  "dumping": "Sauvegarde en cours...",
   
   "select_file_device": "Veuillez sélectionner un fichier et un disque de destination",
   "confirm_restore": "ATTENTION : Voulez-vous vraiment restaurer l'image sur",
@@ -63,8 +63,8 @@
   "action_irreversible": "Cette action est IRRÉVERSIBLE. Tapez \"CONFIRMER\" pour continuer :",
   "restoring": "Restauration...",
   
-  "login_title": "Authentification Requise",
-  "login_subtitle": "Accès sécurisé au système de recovery",
+  "login_title": "Connexion",
+  "login_subtitle": "Accès sécurisé à",
   "password": "Mot de passe",
   "enter_password": "Saisissez votre mot de passe",
   "login": "Se connecter",
@@ -72,23 +72,24 @@
   "invalid_password": "Mot de passe incorrect. Veuillez réessayer.",
   
   "security_info": "Informations de sécurité",
-  "security_description": "Cet outil permet la sauvegarde et restauration complète de disques avec les fonctionnalités suivantes :",
+  "security_description": "Cet outil permet la sauvegarde et restauration complète de disques.",
   
-  "feature_dump": "Dump complet de disques avec streaming",
-  "feature_restore": "Restauration d'images via interface web",
-  "feature_compression": "Compression XZ et ZSTD",
-  "feature_checksum": "Vérification d'intégrité SHA256",
+  "feature_https": "Chiffrement TLS actif de bout en bout",
+  "feature_http": "Chiffrement TLS désactivé, votre mot de passe sera transmis en clair!",
+  "feature_password": "Interface sécurisée par mot de passe",
+  "feature_checksum": "Intégrité des images vérifiable avec checksums SHA256",
   
-  "checksums_title": "Checksums des Dumps Disque",
+  "checksums_title": "Intégrité des sauvegardes téléchargées",
   "back_home": "Retour à l'accueil",
-  "checksums_info": "Voici les checksums SHA256 de tous les dumps disque effectués pendant cette session. Utilisez-les pour vérifier l'intégrité de vos images téléchargées.",
+  "checksums_info": "Voici les checksums SHA256 de toutes les sauvegardes effectués pendant cette session. Utilisez-les pour vérifier l'intégrité de vos images téléchargées.",
   "duration": "Durée",
   "copy": "Copier",
   "copied": "Copié !",
-  "no_checksums": "Aucun checksum disponible",
-  "no_checksums_info": "Les checksums apparaîtront ici après avoir effectué des dumps de disque.",
+  "no_checksums": "Aucune somme de contrôle disponible",
+  "no_checksums_info": "Les sommes de contrôle apparaîtront ici après avoir effectué des sauvegardes de disque.",
   
-  "view_checksums": "Voir les Checksums",
+  "view_checksums": "Intégrité",
   "https_enabled": "HTTPS Activé",
-  "https_info": "Votre connexion est chiffrée avec TLS"
+  "https_info": "Votre connexion est chiffrée avec TLS",
+  "http_info": "Votre connexion n'est pas chiffrée"
 }

@@ -211,15 +211,15 @@
         }
         
         .btn-dump {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
-        }
-        
-        .btn-restore {
             background: linear-gradient(135deg, #4ecdc4, #26c6da);
             color: white;
             box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+        }
+        
+        .btn-restore {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
         }
         
         .btn:hover {
@@ -375,15 +375,10 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <h1>🔧 {{appName}}</h1>
+                <h1>🔄 {{appName}}</h1>
                 <div class="version">{{t "version" .Lang}} {{version}}</div>
             </div>
             <div class="header-right">
-                {{if .UseHTTPS}}
-                <div class="security-badge">
-                    🔒 {{t "https_enabled" .Lang}}
-                </div>
-                {{end}}
                 <div class="lang-selector">
                     <select onchange="changeLanguage(this.value)">
                         {{range $code, $name := .Languages}}
@@ -399,8 +394,8 @@
         </div>
         
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('dump')">📤 {{t "tab_dump" .Lang}}</div>
-            <div class="tab" onclick="switchTab('restore')">📥 {{t "tab_restore" .Lang}}</div>
+            <div class="tab active" onclick="switchTab('dump')">📥 {{t "tab_dump" .Lang}}</div>
+            <div class="tab" onclick="switchTab('restore')">📤 {{t "tab_restore" .Lang}}</div>
         </div>
         
         <!-- TAB DUMP -->
@@ -519,13 +514,13 @@
             </div>
             <div class="feature-card">
                 <h3>{{if .UseHTTPS}}🔒 HTTPS{{else}}HTTP{{end}}</h3>
-                <p>{{if .UseHTTPS}}{{t "https_info" .Lang}}{{else}}Standard HTTP{{end}}
+                <p>{{if .UseHTTPS}}{{t "https_info" .Lang}}{{else}}{{t "http_info" .Lang}}{{end}}
                 <span class="status-indicator {{if .UseHTTPS}}status-ok{{else}}status-missing{{end}}"></span></p>
             </div>
         </div>
         
         <div class="footer">
-            {{appCopyright}} - {{appName}} v{{version}}
+            {{appCopyright}} {{appAuthor}} - {{appName}} v{{version}} - {{appLicence}}
         </div>
     </div>
 

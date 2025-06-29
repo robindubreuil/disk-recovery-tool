@@ -1,4 +1,4 @@
-# Disk Recovery Tool
+# DriveStreamer
 
 A secure web-based disk backup and restore utility with streaming capabilities. No data is stored on the server - everything is streamed directly to/from the client.
 
@@ -33,13 +33,13 @@ A secure web-based disk backup and restore utility with streaming capabilities. 
 ./build.sh build
 
 # Run without authentication
-sudo ./disk-recovery-tool
+sudo ./drivestreamer
 
 # Run with password authentication
-sudo ./disk-recovery-tool -password mySecurePassword
+sudo ./drivestreamer -password mySecurePassword
 
 # Run with HTTPS
-sudo ./disk-recovery-tool -https -cert cert.pem -key key.pem
+sudo ./drivestreamer -https -cert cert.pem -key key.pem
 ```
 
 ### Build Options
@@ -66,7 +66,7 @@ sudo ./disk-recovery-tool -https -cert cert.pem -key key.pem
 ### Command Line Options
 
 ```bash
-disk-recovery-tool [options]
+drivestreamer [options]
 
 Options:
   -port string
@@ -91,13 +91,13 @@ Options:
 
 #### Basic Usage (No Authentication)
 ```bash
-sudo ./disk-recovery-tool
+sudo ./drivestreamer
 ```
 Access at http://localhost:8080
 
 #### With Password Protection
 ```bash
-sudo ./disk-recovery-tool -password "MySecurePassword123"
+sudo ./drivestreamer -password "MySecurePassword123"
 ```
 
 #### With HTTPS
@@ -108,7 +108,7 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 
 Then run with HTTPS:
 ```bash
-sudo ./disk-recovery-tool -https -cert cert.pem -key key.pem
+sudo ./drivestreamer -https -cert cert.pem -key key.pem
 ```
 Access at https://localhost:8080
 
@@ -118,7 +118,7 @@ Access at https://localhost:8080
 htpasswd -bnBC 10 "" "mypassword" | tr -d ':\n' | sed 's/$2y/$2b/'
 
 # Use the hash
-sudo ./disk-recovery-tool -password-hash '$2b$10$...'
+sudo ./drivestreamer -password-hash '$2b$10$...'
 ```
 
 ## Security Considerations
@@ -163,13 +163,13 @@ You can manually change the language using the dropdown in the header.
 ```bash
 # Clone repository
 git clone <repository-url>
-cd disk-recovery-tool
+cd drivestreamer
 
 # Download dependencies
 go mod download
 
 # Build
-go build -o disk-recovery-tool
+go build -o drivestreamer
 
 # Or use the build script
 ./build.sh build
@@ -186,7 +186,7 @@ go build -o disk-recovery-tool
 ```bash
 docker run -it --rm --privileged \
   -p 8080:8080 \
-  disk-recovery-tool:latest \
+  drivestreamer:latest \
   -password mypassword
 ```
 
@@ -207,7 +207,7 @@ sudo yum install coreutils util-linux xz zstd
 ### Permission Denied
 This tool requires root access to read/write block devices:
 ```bash
-sudo ./disk-recovery-tool
+sudo ./drivestreamer
 ```
 
 ### HTTPS Certificate Issues

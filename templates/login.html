@@ -175,12 +175,6 @@
             position: relative;
         }
         
-        .features-list li:before {
-            content: "🔧";
-            position: absolute;
-            left: 0;
-        }
-        
         @media (max-width: 768px) {
             .login-container {
                 padding: 40px 30px;
@@ -209,8 +203,8 @@
     
     <div class="login-container">
         <div class="login-header">
-            <h1>🔧 {{t "login_title" .Lang}}</h1>
-            <div class="subtitle">{{t "login_subtitle" .Lang}}</div>
+            <h1>🔄 {{t "login_title" .Lang}}</h1>
+            <div class="subtitle">{{t "login_subtitle" .Lang}} {{appName}}</div>
         </div>
         
         <form class="login-form" action="/auth" method="post" id="loginForm">
@@ -235,9 +229,8 @@
             <p>{{t "security_description" .Lang}}</p>
             
             <ul class="features-list">
-                <li>{{t "feature_dump" .Lang}}</li>
-                <li>{{t "feature_restore" .Lang}}</li>
-                <li>{{t "feature_compression" .Lang}}</li>
+                <li>{{if .UseHTTPS}}{{t "feature_https" .Lang}}{{else}}{{t "feature_http" .Lang}}{{end}}</li>
+                <li>{{t "feature_password" .Lang}}</li>
                 <li>{{t "feature_checksum" .Lang}}</li>
             </ul>
         </div>

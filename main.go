@@ -106,6 +106,12 @@ func NewDiskRecoveryServer(requireAuth bool, password, passwordHash string, useH
 		"appCopyright": func() string {
 			return AppCopyright
 		},
+		"appAuthor": func() string {
+			return AppAuthor
+		},
+		"appLicence": func() string {
+			return AppLicense
+		},
 		"formatBytes": func(bytes int64) string {
 			const unit = 1024
 			if bytes < unit {
@@ -329,12 +335,14 @@ func (s *DiskRecoveryServer) loginHandler(w http.ResponseWriter, r *http.Request
 	data := struct {
 		Lang      string
 		Languages map[string]string
+		UseHTTPS  bool
 	}{
 		Lang: lang,
 		Languages: map[string]string{
 			"en": "English",
 			"fr": "Français",
 		},
+		UseHTTPS:    s.useHTTPS,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -701,7 +709,7 @@ func (s *DiskRecoveryServer) streamDiskDump(w http.ResponseWriter, devicePath st
 	case "xz":
 		compCmd = exec.Command("xz")
 	case "zstd":
-		compCmd = exec.Command("zstd")
+		compCmd = exec.Command("zstd", "-T0")
 	default:
 		return nil, fmt.Errorf("unsupported compression: %s", options.Compression)
 	}

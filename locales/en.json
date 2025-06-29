@@ -1,12 +1,12 @@
 {
-  "title": "DiskOver",
-  "version": "Advanced disk dump & restore ",
+  "title": "DriveStreamer",
+  "version": "Backup and restore release",
   "logout": "Logout",
   
-  "tab_dump": "Disk Dump",
-  "tab_restore": "Restore Image",
+  "tab_dump": "Backup",
+  "tab_restore": "Restore",
   
-  "select_disk": "Select disk to dump",
+  "select_disk": "Select disk to backup",
   "choose_disk": "Choose a disk",
   "mount_on": "mounted on",
   
@@ -17,13 +17,13 @@
   "no_compression": "No compression available",
   
   "warning_title": "WARNING",
-  "dump_warning": "This operation will create a complete copy of the selected disk. The process may take several hours depending on disk size.",
+  "dump_warning": "This operation will create a complete copy of the selected disk, including empty space. The process may take several hours depending on disk size.",
   
-  "start_dump": "Start dump",
-  "dump_progress": "Dump in progress... Do not close this page.",
-  "download_starting": "Download will start automatically...",
+  "start_dump": "Backup",
+  "dump_progress": "Disk imaging in progress...",
+  "download_starting": "Download will start automatically.",
   
-  "dump_success": "Dump completed successfully!",
+  "dump_success": "Backup complete!",
   "file": "File",
   "checksum": "Checksum",
   "checksum_info": "Keep this checksum to verify the integrity of your image after download.",
@@ -36,7 +36,7 @@
   "danger": "DANGER",
   "restore_warning": "This operation will COMPLETELY ERASE the destination disk. All existing data will be irreversibly lost!",
   
-  "restore_image": "Restore image",
+  "restore_image": "Restore",
   "restore_progress": "Restoration in progress... Please wait.",
   
   "compression_xz": "XZ Compression",
@@ -63,8 +63,8 @@
   "action_irreversible": "This action is IRREVERSIBLE. Type \"CONFIRM\" to continue:",
   "restoring": "Restoring...",
   
-  "login_title": "Authentication Required",
-  "login_subtitle": "Secure access to recovery system",
+  "login_title": "Login",
+  "login_subtitle": "Secure access to",
   "password": "Password",
   "enter_password": "Enter your password",
   "login": "Login",
@@ -72,12 +72,12 @@
   "invalid_password": "Invalid password. Please try again.",
   
   "security_info": "Security Information",
-  "security_description": "This tool allows complete disk backup and restoration with the following features:",
+  "security_description": "This tool allows complete disk backup and restoration.",
   
-  "feature_dump": "Complete disk dump with streaming",
-  "feature_restore": "Image restoration via web interface",
-  "feature_compression": "XZ and ZSTD compression",
-  "feature_checksum": "SHA256 integrity verification",
+  "feature_https": "End-to-end TLS encryption is active",
+  "feature_http": "TLS encryption disabled, passwords will be send as clear text!",
+  "feature_password": "Password protected web interface",
+  "feature_checksum": "Archive integrity can be validated with SHA256 checksums",
   
   "checksums_title": "Disk Dump Checksums",
   "back_home": "Back to Home",
@@ -90,5 +90,6 @@
   
   "view_checksums": "View Checksums",
   "https_enabled": "HTTPS Enabled",
-  "https_info": "Your connection is encrypted using TLS"
+  "https_info": "Your connection is encrypted using TLS",
+  "http_info": "Your connection is not encrypted"
 }

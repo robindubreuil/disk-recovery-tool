@@ -3,13 +3,13 @@ package main
 // Build information - can be overridden during build with ldflags
 var (
 	// Application branding
-	AppName      = "DiskOver"
+	AppName      = "DriveStreamer"
 	AppAuthor    = "Robin DUBREUIL"
-	AppCopyright = "Copyright (c) 2025"
-	AppLicense   = "GPLv3"
+	AppCopyright = "© 2025"
+	AppLicense   = "GNU GPLv3"
 	
 	// Version information
-	Version   = "MAIN"
+	Version   = "DEV"
 	BuildTime = "development"
 	GitCommit = "unknown"
 	BuildUser = "unknown"
