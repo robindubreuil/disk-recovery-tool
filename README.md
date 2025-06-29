@@ -215,12 +215,4 @@ For self-signed certificates, browsers will show a security warning. This is nor
 
 ## License
 
-[Insert your license here]
-
-## Contributing
-
-[Insert contribution guidelines here]
-
-## Support
-
-[Insert support information here]
+GNU GPLv3
