@@ -1,10 +1,10 @@
 Application: drivestreamer
 Version: 0.9.1
-Build Time: 2025-06-29T15:16:34Z
-Git Commit: db01c85
+Build Time: 2025-06-29T15:37:31Z
+Git Commit: a05c25e
 Builder: root@PA4535
 Platform: linux/amd64
 Go Version: go version go1.24.2 linux/amd64
-Static: false
+Static: true
 Debug: false
 Race: false
